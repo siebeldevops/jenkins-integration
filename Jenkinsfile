@@ -6,17 +6,17 @@ pipeline {
                 echo "Starting a multi-branch pipeline job"
             }
         }
-        stage ("Git Clone") {
+        stage ("Fetch Code") {
             steps {
                 echo "Fetching code from Git repository"
             }
         }
-        stage ("Deliver Siebel Workspace") {
+        stage ("Workspace Delivery") {
             steps {
                 echo "Delivering Siebel Workspace changes"
             }
         }
-        stage ("Git Clone") {
+        stage ("Test") {
             steps {
                 echo "Triggering test automation"
             }
