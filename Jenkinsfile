@@ -1,30 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage ("Start") {
+        stage ("Deploy") {
             steps {
-                echo "Starting a multi-branch pipeline job"
+                echo "Deploy in progress by Jenkins"
             }
-        }
-        stage ("Fetch Code") {
-            steps {
-                echo "Fetching code from Git repository"
-            }
-        }
-        stage ("Workspace Delivery") {
-            steps {
-                echo "Delivering Siebel Workspace changes"
-            }
-        }
-        stage ("Test") {
-            steps {
-                echo "Triggering test automation"
-            }
-        }
-        stage ("Done") {
-            steps {
-                echo "Finishing the job"
-            }
+            post {
+                always {
+                    jiraSendDeploymentInfo site: 'siebeldevops.atlassian.net', environmentId: 'au-dev-1', environmentName: 'au-dev-1', environmentType: 'development'
+                }
+            }            
         }
     }
 }
